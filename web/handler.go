@@ -36,6 +36,7 @@ func NewHandler(
 		r.Post("/list/newCategory", h.CategorySave())
 		// Маршруты для создания нового продукта
 		r.Get("/list/newProduct", h.NewProduct())
+		r.Get("/list/inStock", h.inStockList())
 		r.Post("/list/newProduct", h.ProductSave())
 	})
 

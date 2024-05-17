@@ -32,11 +32,6 @@ func (h *Handler) ProductsPage() http.HandlerFunc {
 			return
 		}
 
-		// Проходим по каждому продукту и присваиваем полю CategoryName значение из структуры Product
-		//for i := range tt {
-		//	tt[i].CategoryName = tt[i].Category.Name
-		//}
-
 		err = tmpl.ExecuteTemplate(w, "productList.html", Data{Products: tt})
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -90,4 +85,29 @@ func (h *Handler) ProductSave() http.HandlerFunc {
 		}
 		http.Redirect(w, r, "/products/list", http.StatusFound)
 	}
+}
+
+func (h *Handler) inStockList() http.HandlerFunc {
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		type Data struct {
+			InStock []pharma.InStock
+		}
+
+		tmpl := template.Must(template.New("inStockList.html").ParseFiles("C:\\Users\\User\\" +
+			"GolandProjects\\pharma\\web\\templates\\inStockList.html"))
+
+		tt, err := h.product.GetInStockData()
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		err = tmpl.ExecuteTemplate(w, "inStockList.html", Data{InStock: tt})
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+
 }

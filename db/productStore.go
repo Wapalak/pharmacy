@@ -12,8 +12,8 @@ type ProductStore struct {
 
 func (s *ProductStore) ProductList() ([]pharma.Product, error) {
 	var products []pharma.Product
-	err := s.Select(&products, "SELECT p.Product_ID, p.Name, c.Name AS CategoryName"+
-		" FROM Product p JOIN Category c ON p.Category_ID = c.Category_ID;")
+	err := s.Select(&products, `SELECT p.Product_ID, p.Name, c.Name AS CategoryName 
+		FROM Product p JOIN Category c ON p.Category_ID = c.Category_ID;`)
 
 	if err != nil {
 		return nil, err
@@ -22,7 +22,7 @@ func (s *ProductStore) ProductList() ([]pharma.Product, error) {
 }
 
 func (s *ProductStore) CategorySave(categoryName string) error {
-	stmt, err := s.Prepare("INSERT INTO Category (Name) VALUES ($1);")
+	stmt, err := s.Prepare(`INSERT INTO Category (Name) VALUES ($1);`)
 	if err != nil {
 		log.Fatal("can't prepare sql statement", err)
 		return err
@@ -141,4 +141,17 @@ func (s *ProductStore) GetShippingData() ([]pharma.Shipping, error) {
 		return nil, err
 	}
 	return shipping, nil
+}
+
+func (s *ProductStore) GetInStockData() ([]pharma.InStock, error) {
+	var inStock []pharma.InStock
+	query := `
+        SELECT i.stock_id, i.product_id, p.name AS name, i.quantity
+        FROM in_stock i
+        JOIN product p ON i.product_id = p.product_id
+    `
+	if err := s.DB.Select(&inStock, query); err != nil {
+		return nil, err
+	}
+	return inStock, nil
 }
