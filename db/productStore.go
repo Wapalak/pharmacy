@@ -129,3 +129,16 @@ func (s *ProductStore) GetOrders() ([]pharma.Order, error) {
 	}
 	return orders, nil
 }
+
+func (s *ProductStore) GetShippingData() ([]pharma.Shipping, error) {
+	var shipping []pharma.Shipping
+	query := `
+       	SELECT s.delivery_id, s.order_id, s.stock_id, s.status
+		FROM Shipping s
+		JOIN "Order" o ON s.order_id = o.order_id
+    `
+	if err := s.DB.Select(&shipping, query); err != nil {
+		return nil, err
+	}
+	return shipping, nil
+}

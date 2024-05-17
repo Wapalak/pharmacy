@@ -28,3 +28,25 @@ func (h *Handler) OrdersList() http.HandlerFunc {
 		}
 	}
 }
+
+func (h *Handler) ShippingList() http.HandlerFunc {
+	type Data struct {
+		Shipping []pharma.Shipping
+	}
+	tmpl := template.Must(template.New("shippingList.html").ParseFiles("C:\\Users\\User\\GolandProjects\\" +
+		"pharma\\web\\templates\\shippingList.html"))
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		tt, err := h.product.GetShippingData()
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		err = tmpl.ExecuteTemplate(w, "shippingList.html", Data{Shipping: tt})
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+}

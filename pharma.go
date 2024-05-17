@@ -13,6 +13,7 @@ type PharmacyStore interface {
 	SuppliersList() ([]Supplier, error)
 	GetPharmacies() ([]PharmacyInfo, error)
 	GetOrders() ([]Order, error)
+	GetShippingData() ([]Shipping, error)
 }
 
 type Product struct {
@@ -44,8 +45,11 @@ type InStock struct {
 
 type Shipping struct {
 	DeliveryId int    `db:"delivery_id"`
+	OrderId    int    `db:"order_id"`
 	ProductId  int    `db:"product_id"`
+	Name       string `db:"name"`
 	StockId    int    `db:"stock_id"`
+	Quantity   int    `db:"quantity"`
 	Status     string `db:"status"`
 }
 

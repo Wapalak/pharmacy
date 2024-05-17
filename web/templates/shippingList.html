@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Orders List</title>
+    <title>Shipping List</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,21 +44,20 @@
     </style>
 </head>
 <body>
-<h1>Orders List</h1>
-{{if not .Orders}}
+<h1>Shipping List</h1>
+{{if not .Shipping}}
 <p class="empty-message">Orders list is empty!</p>
 {{else}}
-{{range .Orders}}
+{{range .Shipping}}
 <div class="supplier-block">
-    <dt><strong>Supplier ID: {{.OrderId}}</strong></dt>
-    <dd>ProductName: {{.Name}}</dd>
-    <dd>PharmacyName: {{.PharmacyName}}</dd>
+    <dt><strong>Delivery ID: {{.DeliveryId}}</strong></dt>
+    <dd>Product Name: {{.Name}}</dd>
     <dd>Quantity: {{.Quantity}}</dd>
+    <dd>Status: {{.Status}}</dd>
 
 </div>
 {{end}}
 {{end}}
-<a href="/orders/new" class="button">Create a new Order</a>
-<a href="/orders/shippings" class="button">Show shipping list</a>
+<a href="/suppliers/new" class="button">Create a new Shipping</a>
 </body>
 </html>

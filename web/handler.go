@@ -55,9 +55,8 @@ func NewHandler(
 
 	h.Route("/orders", func(r chi.Router) {
 		r.Get("/", h.OrdersList())
-		r.Get("/newSupplies", h.NewSupplies())
+		r.Get("/shippings", h.ShippingList())
 		r.Post("/", h.SuppliesSave())
-		r.Get("/suppliers", h.SuppliersList())
 	})
 
 	return h
