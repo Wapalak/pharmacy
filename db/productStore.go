@@ -53,6 +53,19 @@ func (s *ProductStore) ProductSave(t *pharma.Product) error {
 	return nil
 }
 
+//func (s *ProductStore) DeleteProduct(productID int) error {
+//	// Определите SQL-запрос для удаления продукта по его ID
+//	query := "DELETE FROM Product WHERE product_id = $1"
+//
+//	// Выполните SQL-запрос для удаления продукта
+//	_, err := s.DB.Exec(query, productID)
+//	if err != nil {
+//		return err
+//	}
+//
+//	return nil
+//}
+
 func (s *ProductStore) SuppliesList() ([]pharma.Supplies, error) {
 	var supplies []pharma.Supplies
 	query := `
@@ -128,6 +141,17 @@ func (s *ProductStore) GetOrders() ([]pharma.Order, error) {
 		return nil, err
 	}
 	return orders, nil
+}
+func (s *ProductStore) SaveOrders(order *pharma.Order) error {
+	query := `
+        INSERT INTO "Order" (pharmacy_id, product_id, quantity)
+        VALUES ($1, $2, $3)
+    `
+	_, err := s.DB.Exec(query, order.PharmacyId, order.ProductId, order.Quantity)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *ProductStore) GetShippingData() ([]pharma.Shipping, error) {

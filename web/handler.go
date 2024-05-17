@@ -38,6 +38,9 @@ func NewHandler(
 		r.Get("/list/newProduct", h.NewProduct())
 		r.Get("/list/inStock", h.inStockList())
 		r.Post("/list/newProduct", h.ProductSave())
+
+		//r.Get("/products/{productId}", h.DeleteProduct())
+
 	})
 
 	h.Route("/supplies", func(r chi.Router) {
@@ -49,15 +52,16 @@ func NewHandler(
 
 	h.Route("/pharmacy", func(r chi.Router) {
 		r.Get("/", h.GetPharmacies())
-		r.Get("/newSupplies", h.NewSupplies())
-		r.Post("/", h.SuppliesSave())
+		//r.Get("/newPharmacy", h.NewPharmacy())
+		//r.Post("/", h.PharmacySave())
 		r.Get("/suppliers", h.SuppliersList())
 	})
 
 	h.Route("/orders", func(r chi.Router) {
 		r.Get("/", h.OrdersList())
 		r.Get("/shippings", h.ShippingList())
-		r.Post("/", h.SuppliesSave())
+		r.Get("/newOrder", h.NewOrder())
+		r.Post("/", h.OrderSave())
 	})
 
 	return h

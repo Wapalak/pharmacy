@@ -109,5 +109,28 @@ func (h *Handler) inStockList() http.HandlerFunc {
 			return
 		}
 	}
-
 }
+
+//func (h *Handler) DeleteProduct() http.HandlerFunc {
+//	return func(w http.ResponseWriter, r *http.Request) {
+//		// Получаем ID продукта из URL-пути
+//		productId := chi.URLParam(r, "productId")
+//
+//		// Преобразуем ID продукта в числовой формат
+//		id, err := strconv.Atoi(productId)
+//		if err != nil {
+//			http.Error(w, "Invalid product ID", http.StatusBadRequest)
+//			return
+//		}
+//
+//		// Вызываем функцию удаления продукта из хранилища
+//		err = h.product.DeleteProduct(id)
+//		if err != nil {
+//			http.Error(w, err.Error(), http.StatusInternalServerError)
+//			return
+//		}
+//
+//		// Перенаправляем пользователя на страницу со списком продуктов
+//		http.Redirect(w, r, "/products/list", http.StatusFound)
+//	}
+//}
