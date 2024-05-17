@@ -155,3 +155,13 @@ func (s *ProductStore) GetInStockData() ([]pharma.InStock, error) {
 	}
 	return inStock, nil
 }
+
+func (s *ProductStore) GetRegions() ([]pharma.Region, error) {
+	var region []pharma.Region
+	query := `SELECT * from Region`
+
+	if err := s.DB.Select(&region, query); err != nil {
+		return nil, err
+	}
+	return region, nil
+}

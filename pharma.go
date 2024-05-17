@@ -15,6 +15,7 @@ type PharmacyStore interface {
 	GetOrders() ([]Order, error)
 	GetShippingData() ([]Shipping, error)
 	GetInStockData() ([]InStock, error)
+	GetRegions() ([]Region, error)
 }
 
 type Product struct {

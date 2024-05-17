@@ -58,7 +58,19 @@
 
 {{end}}
 {{end}}
+
+<h1>Region List</h1>
+{{if not .Regions}}
+<p class="empty-message">Region list is empty!</p>
+{{else}}
+{{range .Regions}}
+<div class="blog-block">
+    <dt><strong>Region ID: {{.RegionId}}</strong></dt>
+    <dd>Name: {{.Name}}</dd>
+</div>
+
+{{end}}
+{{end}}
 <a href="/pharmacies/new" class="button">Create a new pharmacy</a>
-<a href="/regions/list" class="button">See the list of regions</a>
 </body>
 </html>
