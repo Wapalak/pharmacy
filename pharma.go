@@ -34,7 +34,7 @@ type Category struct {
 type Order struct {
 	OrderId      int    `db:"order_id"`
 	ProductId    int    `db:"product_id"`
-	Name         string `db:"name"`
+	ProductName  string `db:"product_name"`
 	PharmacyId   int    `db:"pharmacy_id"`
 	PharmacyName string `db:"pharmacy_name"`
 	Quantity     int    `db:"quantity"`

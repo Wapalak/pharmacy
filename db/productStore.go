@@ -132,10 +132,10 @@ func (s *ProductStore) GetPharmacies() ([]pharma.PharmacyInfo, error) {
 func (s *ProductStore) GetOrders() ([]pharma.Order, error) {
 	var orders []pharma.Order
 	query := `
-        SELECT o.order_id, o.product_id, p.name, o.pharmacy_id, ph.name, o.quantity
-        FROM "Order" o
-        JOIN Product p ON o.product_id = p.product_id
-        JOIN Pharmacy ph ON o.pharmacy_id = ph.pharmacy_id
+        SELECT o.order_id, o.product_id, p.name as product_name, o.pharmacy_id, ph.name as pharmacy_name, o.quantity
+		FROM "Order" o
+		JOIN Product p ON o.product_id = p.product_id
+		JOIN Pharmacy ph ON o.pharmacy_id = ph.pharmacy_id;
     `
 	if err := s.DB.Select(&orders, query); err != nil {
 		return nil, err

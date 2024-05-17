@@ -51,11 +51,11 @@
 {{range .Orders}}
 <div class="supplier-block">
     <dt><strong>Supplier ID: {{.OrderId}}</strong></dt>
-    <dd>ProductName: {{.Name}}</dd>
-    <dd>PharmacyName: {{.PharmacyName}}</dd>
+    <dd>Product Name: {{.ProductName}}</dd>
+    <dd>Pharmacy Name: {{.PharmacyName}}</dd>
     <dd>Quantity: {{.Quantity}}</dd>
-
 </div>
+
 {{end}}
 {{end}}
 <a href="/orders/newOrder" class="button">Create a new Order</a>
