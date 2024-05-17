@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        .supplier-block {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .supplier-block dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .supplier-block dd {
+            margin-bottom: 10px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .empty-message {
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Supplier List</h1>
+{{if not .Supplier}}
+<p class="empty-message">Supplier list is empty!</p>
+{{else}}
+{{range .Supplier}}
+<div class="supplier-block">
+    <dt><strong>Supplier ID: {{.SupplierId}}</strong></dt>
+    <dd>Name: {{.Name}}</dd>
+
+</div>
+{{end}}
+{{end}}
+<a href="/suppliers/new" class="button">Create a new supplier</a>
+</body>
+</html>

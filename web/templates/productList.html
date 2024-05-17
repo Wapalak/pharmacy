@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        .blog-block {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .blog-block dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .blog-block dd {
+            margin-bottom: 10px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .empty-message {
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Product List</h1>
+{{if not .Products}}
+<p class="empty-message">Product list is empty!</p>
+{{else}}
+{{range .Products}}
+<div class="blog-block">
+    <dt><strong>Product_ID: {{.ProductId}}</strong></dt>
+    <dd>Name: {{.Name}}</dd>
+    <dd>Category_id: {{.CategoryName}}</dd>
+    <dd>
+        <a href="/products/{{.ProductId}}" class="button">See details</a>
+    </dd>
+</div>
+{{end}}
+{{end}}
+<a href="/products/list/newProduct" class="button">Create a new product</a>
+<a href="/products/list/newCategory" class="button">Create a new category</a>
+</body>
+</html>

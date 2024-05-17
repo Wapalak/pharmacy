@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pharmacy List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        .blog-block {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .blog-block dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .blog-block dd {
+            margin-bottom: 10px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .empty-message {
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Pharmacy List</h1>
+{{if not .Pharmacies}}
+<p class="empty-message">Pharmacy list is empty!</p>
+{{else}}
+{{range .Pharmacies}}
+<div class="blog-block">
+    <dt><strong>Pharmacy_Id: {{.PharmacyId}}</strong></dt>
+    <dd>Name: {{.Name}}</dd>
+    <dd>Address: {{.Address}}</dd>
+    <dd>RegionName: {{.RegionName}}</dd>
+</div>
+
+{{end}}
+{{end}}
+<a href="/pharmacies/new" class="button">Create a new pharmacy</a>
+<a href="/regions/list" class="button">See the list of regions</a>
+</body>
+</html>
